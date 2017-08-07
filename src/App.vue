@@ -8,6 +8,7 @@
 
 <script>
 import './assets/reset.css'
+import 'normalize.css/normalize.css'
 
 import Topbar from './components/Topbar'
 import ResumeEditor from './components/ResumeEditor'
