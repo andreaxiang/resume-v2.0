@@ -13,6 +13,7 @@
 <script>
 import './assets/reset.css'
 import 'normalize.css/normalize.css'
+import icons from './assets/icons'
 
 import Topbar from './components/Topbar'
 import ResumeEditor from './components/ResumeEditor'
@@ -25,7 +26,11 @@ export default {
       text: 'hello world'
     }
   },
-  components: {Topbar, ResumeEditor, ResumePreview}
+  components: {Topbar, ResumeEditor, ResumePreview},
+  created(){
+    //将SVG icons 插入 body 中
+    document.body.insertAdjacentHTML('afterbegin', icons)
+  }
 }
 </script>
 

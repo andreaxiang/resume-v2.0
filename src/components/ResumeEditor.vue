@@ -2,14 +2,14 @@
    <div id="resumeEditor">
      <nav>
       <ol>
-        <li v-for="(item,index) in resume.visibleItems" :class="{active: item === selected}" @click="selected = item">
+        <li v-for="(item,index) in resume.config" :class="{active: item.field === selected}" @click="selected = item.field">
           {{index}}
         </li>
       </ol>
      </nav>
       <ol class="panels">
-        <li v-for="item in resume.visibleItems" v-show="item === selected">
-          {{resume[item]}}
+        <li v-for="item in resume.config" v-show="item.field === selected">
+          {{resume[item.field]}}
         </li>
       </ol>
    </div>
@@ -21,10 +21,20 @@
    name: 'ResumeEditor',
    data(){
     return {
-      selected: 'bio',
+      selected: 'profile',
       resume: {
-        visibleItems: ['bio', 'workHistory', 'education', 'projects', 'awards', 'contacts', 'others'],
-        bio: {
+        visibleItems: ['profile','education', 'skills', 'workHistory', 'projects', 'awards', 'contacts'],
+        config: [
+          {field: 'profile', icon: 'id'},
+          {field: 'education', icon: 'book'},
+          {field: 'skills', icon: 'heart'},
+          {field: 'workHistory', icon: 'work'},
+          {field: 'projects', icon: 'add'},
+          {field: 'awards', icon: 'cup'},
+          {field: 'contacts', icon: 'phone'}
+        ],
+
+        profile: {
           name: '',
           intention: '',
           birth: '',
@@ -34,12 +44,12 @@
           avatar: '',
           title: ''
         },
-        'workHistory': [],
         education: [],
+        skills: [],
+        workHistory: [],
         projects: [],
         awards: [],
-        contacts: [],
-        others: []
+        contacts: []
       }
     }
    }
