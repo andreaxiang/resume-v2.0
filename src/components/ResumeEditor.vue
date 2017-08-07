@@ -3,7 +3,9 @@
      <nav>
       <ol>
         <li v-for="(item,index) in resume.config" :class="{active: item.field === selected}" @click="selected = item.field">
-          {{index}}
+          <svg class="icon">
+            <use :xlink:href="`#icon-${item.icon}`"></use>
+          </svg>
         </li>
       </ol>
      </nav>
