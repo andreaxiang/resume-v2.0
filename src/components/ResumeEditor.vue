@@ -95,4 +95,8 @@
   ol {
     list-style: none;
   }
+  svg.icon {
+    width: 24px;
+    height: 24px;
+  }
  </style>
