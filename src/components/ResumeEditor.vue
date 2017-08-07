@@ -11,7 +11,10 @@
      </nav>
       <ol class="panels">
         <li v-for="item in resume.config" v-show="item.field === selected">
-          {{resume[item.field]}}
+          <div class="resumeField" v-for="(value,key) in resume[item.field]">
+            <label> {{key}} </label>
+            <input type="text" v-model="resume[item.field][key]">
+          </div>
         </li>
       </ol>
    </div>
@@ -43,7 +46,6 @@
           city: '',
           telephone: '',
           email: '',
-          avatar: '',
           title: ''
         },
         education: [],
@@ -69,6 +71,7 @@
       width: 80px;
       background: #0d331f;
       color: #fff;
+      overflow: hidden;
       > ol {
         > li {
           height: 48px;
@@ -96,6 +99,20 @@
   }
   ol {
     list-style: none;
+  }
+  .resumeField {
+      > label {
+        display: block;
+      }
+      input[type="text"] {
+        margin: 16px 0;
+        border: 1px solid #ddd;
+        box-shadow: inset 0 1px 3px 0 rgba(0,0,0,.25);
+        width: 100%;
+        height: 40px;
+        padding: 0 8px;
+        outline: none;
+      }
   }
   svg.icon {
     width: 24px;
