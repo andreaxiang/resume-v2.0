@@ -34,7 +34,12 @@
      </div>
 
      <section data-name="education" v-show="resume.education">
-       <h2>毕业院校</h2>
+       <h2>
+         <svg class="icon">
+           <use :xlink:href="`#icon-${item.icon}`"></use>
+         </svg>
+         毕业院校
+       </h2>
        <ol>
          <li v-for="item in resume.education">
            <h3>{{item.school}}
@@ -46,7 +51,12 @@
      </section>
 
      <section data-name="workHistory" v-show="resume.workHistory">
-       <h2>工作经历</h2>
+       <h2>
+         <svg class="icon">
+           <use :xlink:href="`#icon-${item.icon}`"></use>
+         </svg>
+         工作经历
+       </h2>
        <ol>
          <li v-for="item in resume.workHistory">
            <h3>{{item.company}}</h3>
@@ -57,7 +67,12 @@
        </ol>
      </section>
      <section data-name="projects" v-show="resume.projects">
-       <h2>项目展示</h2>
+       <h2>
+         <svg class="icon">
+           <use :xlink:href="`#icon-${item.icon}`"></use>
+         </svg>
+         项目展示
+       </h2>
        <ol>
          <li v-for="item in resume.projects">
            <h3>{{item.project}}</h3>
@@ -67,7 +82,12 @@
        </ol>
      </section>
      <section data-name="awards" v-show="resume.awards">
-       <h2>获奖情况</h2>
+       <h2>
+         <svg class="icon">
+           <use :xlink:href="`#icon-${item.icon}`"></use>
+         </svg>
+         获奖情况
+       </h2>
        <ol>
          <li v-for="item in resume.awards">
            <h3>{{item.award}}</h3>
@@ -76,7 +96,12 @@
        </ol>
      </section>
      <section data-name="contacts" v-show="resume.contacts">
-       <h2>联系方式</h2>
+       <h2>
+         <svg class="icon">
+           <use :xlink:href="`#icon-${item.icon}`"></use>
+         </svg>
+         联系方式
+       </h2>
        <table>
          <tr v-for="item in resume.contacts">
            <td>{{item.contact}}</td>
@@ -88,7 +113,7 @@
  </template>
  
  <script>
- 
+
  export default {
    name: 'ResumePreview',
    computed: {
@@ -188,7 +213,7 @@
         }
       }
       >section[data-name="skills"]{
-        margin: 1em 0;
+        margin: 1em 0 .5em 0;
         .skill-detail{
           width: 85%;
           margin: 0 auto;
