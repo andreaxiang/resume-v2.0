@@ -28,6 +28,12 @@ export default {
   created(){
     //将SVG icons 插入 body 中
     document.body.insertAdjacentHTML('afterbegin', icons)
+    //数据保存到localStorage
+    let state = localStorage.getItem('state')
+    if(state){
+      state = JSON.parse(state)
+    }
+    this.$store.commit('initState', state)
   }
 }
 </script>
