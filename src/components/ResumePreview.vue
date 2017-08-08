@@ -13,12 +13,12 @@
          </h1>
          <h4>求职意向：{{resume.profile.intention}}</h4>
          <div class="aside-title">基本信息</div>
-         <div class="person-info">
-           <p>生日：{{resume.profile.birthday}}</p>
-           <p>现居：{{resume.profile.city}}</p>
-           <p>电话：{{resume.profile.telephone}}</p>
-           <p>邮箱：{{resume.profile.email}}</p>
-         </div>
+         <ol class="person-info">
+           <li>生日：{{resume.profile.birthday}}</li>
+           <li>现居：{{resume.profile.city}}</li>
+           <li>电话：{{resume.profile.telephone}}</li>
+           <li>邮箱：{{resume.profile.email}}</li>
+         </ol>
        </section>
        <section data-name="skills" v-show="resume.skills">
          <div class="aside-title">职业技能</div>
@@ -173,6 +173,9 @@
       }
       >section[data-name="profile"],section[data-name="skills"]{
         margin: 1.5em 0;
+        li {
+
+        }
         > .aside-title {
           width: 85%;
           margin: .8em auto;
@@ -193,29 +196,35 @@
           width: 85%;
           margin:0 auto;
           text-align: left;
-          >p {
+          >li {
             font-size: 14px;
             margin: .2em .5em 0 0;
           }
         }
       }
       >section[data-name="skills"]{
-        margin: 1em 0 .5em 0;
-        .skill-detail{
+        >ol {
           width: 85%;
-          margin: 0 auto;
-          padding: .3em;
-          font-size: 14px;
-          text-align: left;
-          overflow: hidden;
-          >span:first-child {
-            float: left;
-            width: 40%;
-          }
-          >span:nth-child(2){
-            margin-left: .8em;
-            float: left;
-            width: 50%;
+          margin:0 auto;
+          >li {
+            font-size: 14px;
+            margin: .2em 0 .5em 0;
+            text-align: left;
+            >p.skill-detail {
+              padding: .3em;
+              font-size: 14px;
+              text-align: left;
+              overflow: hidden;
+              >span:first-child {
+                float: left;
+                width: 40%;
+              }
+              >span:nth-child(2){
+                margin-left: .8em;
+                float: left;
+                width: 50%;
+              }
+            }
           }
         }
       }
@@ -296,19 +305,14 @@
       }
     }
     section[data-name="contacts"]{
-
-      overflow: hidden;
       li {
+        color: #3e6391;
+        font-size: .8em;
         float: left;
-        text-align: center;
-        > h3{
-          font-size: 1.2em;
-          margin: .5em 2em;
-          >a {
-            color: red;
-            text-decoration: none;
-          }
-        }
+        margin: 0 0 1.5em 1em;
+      }
+      ol {
+        border-bottom: none;
       }
     }
   }
