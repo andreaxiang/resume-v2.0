@@ -38,8 +38,7 @@ export default new Vuex.Store({
             {project: '', link: '', skill: '', content: ''}
       ],
       awards: [
-            {award: '' , content: ''},
-            {award: '', content: ''}
+            {award: '' , content: ''}
       ],
       contacts: [
             {contact: '' , link: ''}

@@ -1,4 +1,5 @@
 <template>
+<div id="app">
   <div class="page">
     <header>
       <Topbar/>
@@ -8,6 +9,7 @@
       <ResumePreview/>
     </main>
   </div>
+</div>
 </template>
 
 <script>
@@ -33,7 +35,7 @@ export default {
     if(state){
       state = JSON.parse(state)
     }
-    this.$store.commit('initState', state)
+    //this.$store.commit('initState', state)
   }
 }
 </script>

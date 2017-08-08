@@ -3,13 +3,25 @@
      <div class="wrapper">
        <div class="logo">
          <img src="https://ooo.0o0.ooo/2017/08/04/59841e858990d.png"/>
-         <span>在线简历</span>
+         <span>在线简历制作</span>
        </div>
        <div class="actions">
-         <a href="#" class="button primary">注册</a>
-         <a href="#" class="button">登录</a>
-         <a href="#" class="button">预览</a>
+         <div class="userActions">
+           <span class="welcome">你好，{{user.username}}</span>
+           <a href="#" class="button" @click.prevent="signOut">退出</a>
+           <a href="#" class="button primary">预览</a>
+         </div>
+         <div class="userActions">
+           <a href="#" class="button primary" @click.prevent="signUpDialogVisible = true">注册</a>
+           <a href="#" class="button" @click.prevent="signInDialogVisible = true">登录</a>
+         </div>
        </div>
+       <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
+         <SignUpForm @success="signIn($event)"/>
+       </MyDialog>
+       <MyDialog title="登录" :visible="signInDialogVisible" @close="signInDialogVisible = false">
+         <SignInForm @success="signIn($event)"/>
+       </MyDialog>
      </div>
    </div>
  </template>
@@ -17,7 +29,15 @@
  <script>
  
  export default {
-   name: 'Topbar'
+   name: 'Topbar',
+   data(){
+     return {
+       signUpDialogVisible: false
+     }
+   },
+   components: {
+     MyDialog
+   }
  }
  </script>
  
@@ -72,5 +92,11 @@
  }
  .actions {
    display: flex;
+   .userActions {
+     margin-right: 3em;
+     .welcome {
+       margin-right: .5em;
+     }
+   }
  }
  </style>
