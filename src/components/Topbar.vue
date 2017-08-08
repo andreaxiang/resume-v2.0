@@ -6,28 +6,21 @@
          <span>在线简历制作</span>
        </div>
        <div class="actions">
-         <div class="userActions">
-           <span class="welcome">你好，{{user.username}}</span>
-           <a href="#" class="button" @click.prevent="signOut">退出</a>
-           <a href="#" class="button primary">预览</a>
-         </div>
-         <div class="userActions">
-           <a href="#" class="button primary" @click.prevent="signUpDialogVisible = true">注册</a>
-           <a href="#" class="button" @click.prevent="signInDialogVisible = true">登录</a>
-         </div>
+         <a href="#" class="button primary" @click.prevent="signUpDialogVisible = true">注册</a>
+         <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
+           <SignUpForm @success="login($event)"/>
+         </MyDialog>
+         <a href="#" class="button">登录</a>
+         <a href="#" class="button">预览</a>
        </div>
-       <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
-         <SignUpForm @success="signIn($event)"/>
-       </MyDialog>
-       <MyDialog title="登录" :visible="signInDialogVisible" @close="signInDialogVisible = false">
-         <SignInForm @success="signIn($event)"/>
-       </MyDialog>
      </div>
    </div>
  </template>
  
  <script>
- 
+ import MyDialog from './MyDialog'
+ import SignUpForm from './SignUpForm'
+
  export default {
    name: 'Topbar',
    data(){
@@ -35,8 +28,19 @@
        signUpDialogVisible: false
      }
    },
+   computed: {
+     user(){
+       return this.$store.state.user
+     }
+   },
    components: {
-     MyDialog
+     MyDialog, SignUpForm
+   },
+   methods: {
+     login(user){
+       this.signUpDialogVisible = false
+       this.$store.commit('setUser', user)
+     }
    }
  }
  </script>

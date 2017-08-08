@@ -14,8 +14,7 @@
          <input type="password" v-model="formData.password" required placeholder="密码不少于6位">
        </div>
        <div class="actions">
-         <input type="submit" value="注册">
-         <span class="errorMessage">{{errorMessage}}</span>
+         <input type="submit" value="提交注册">
        </div>
      </form>
    </div>
@@ -24,8 +23,6 @@
  <script>
 
  import AV from '../lib/leancloud';
- import getErrorMessage from '../lib/getErrorMessage';
- import getAVUser from '../lib/getAVUser';
 
  export default {
    name: 'SignUpForm',
@@ -53,10 +50,13 @@
        user.setPassword(password);
        // 设置邮箱
        user.setEmail(email);
-       user.signUp().then(() => {
-         this.$emit('success', getAVUser())
+       user.signUp().then((loginedUser) => {
+         this.$emit('success', {
+           username: loginedUser.attributes.username,
+           id: loginedUser.id
+         })
        },(error) => {
-         this.errorMessage = getErrorMessage(error)
+         alert(JSON.stringify(error));
        });
      }
    }
