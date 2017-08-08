@@ -6,8 +6,9 @@
          <span>在线简历</span>
        </div>
        <div class="actions">
-         <a href="#" class="button primary" >注册</a>
+         <a href="#" class="button primary">注册</a>
          <a href="#" class="button">登录</a>
+         <a href="#" class="button">预览</a>
        </div>
      </div>
    </div>
