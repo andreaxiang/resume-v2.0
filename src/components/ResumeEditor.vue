@@ -34,7 +34,7 @@
  export default {
    name: 'ResumeEditor',
    computed: {
-     selected(){
+     selected: {
        get(){
          return this.$store.state.selected
        },
