@@ -35,16 +35,15 @@
 
      <section data-name="education" v-show="resume.education">
        <h2>
-         <svg class="icon">
-           <use :xlink:href="`#icon-${item.icon}`"></use>
-         </svg>
-         毕业院校
+         <b class="icon-img"></b>
+         教育背景  Education Background
        </h2>
        <ol>
          <li v-for="item in resume.education">
-           <h3>{{item.school}}
-             <p v-show="item.time"> - {{item.time}} </p>
-             <p v-show="item.content"> - {{item.content}} </p>
+           <h3>
+             <p v-show="item.time"> {{item.time}} </p>
+             <p v-show="item.school"> {{item.school}} </p>
+             <p v-show="item.content"> {{item.content}} </p>
            </h3>
          </li>
        </ol>
@@ -52,41 +51,35 @@
 
      <section data-name="workHistory" v-show="resume.workHistory">
        <h2>
-         <svg class="icon">
-           <use :xlink:href="`#icon-${item.icon}`"></use>
-         </svg>
-         工作经历
+         <b class="icon-img"></b>
+         工作经历  Work Experience
        </h2>
        <ol>
          <li v-for="item in resume.workHistory">
-           <h3>{{item.company}}</h3>
-           <p v-show="item.time"> {{item.time}} </p>
-           <p v-show="item.title"> {{item.title}} </p>
-           <p v-show="item.content"> {{item.content}} </p>
+           <h4 v-show="item.time"> {{item.time}} </h4>
+           <h4>{{item.company}}</h4>
+           <h4 v-show="item.title"> {{item.title}} </h4>
+           <p v-show="item.content">工作描述： {{item.content}} </p>
          </li>
        </ol>
      </section>
      <section data-name="projects" v-show="resume.projects">
        <h2>
-         <svg class="icon">
-           <use :xlink:href="`#icon-${item.icon}`"></use>
-         </svg>
-         项目展示
+         <b class="icon-img"></b>
+         项目展示  Projects Show
        </h2>
        <ol>
          <li v-for="item in resume.projects">
-           <h3>{{item.project}}</h3>
-           <p v-show="item.skill"> {{item.skill}} </p>
-           <p v-show="item.content"> {{item.content}} </p>
+           <h4>项目名称：<a href="v-show='item.link'">{{item.project}}</a></h4>
+           <h4 v-show="item.skill">技术栈： {{item.skill}} </h4>
+           <p v-show="item.content">项目描述： {{item.content}} </p>
          </li>
        </ol>
      </section>
      <section data-name="awards" v-show="resume.awards">
        <h2>
-         <svg class="icon">
-           <use :xlink:href="`#icon-${item.icon}`"></use>
-         </svg>
-         获奖情况
+         <b class="icon-img"></b>
+         获奖情况 Additional Performance
        </h2>
        <ol>
          <li v-for="item in resume.awards">
@@ -97,17 +90,14 @@
      </section>
      <section data-name="contacts" v-show="resume.contacts">
        <h2>
-         <svg class="icon">
-           <use :xlink:href="`#icon-${item.icon}`"></use>
-         </svg>
-         联系方式
+         <b class="icon-img"></b>
+         联系方式  Contact Me
        </h2>
-       <table>
-         <tr v-for="item in resume.contacts">
-           <td>{{item.contact}}</td>
-           <td v-show="item.content"> {{item.content}} </td>
-         </tr>
-       </table>
+       <ol>
+         <li v-for="item in resume.contacts">
+           <h3><a href="v-show='item.link'">{{item.contact}}</a></h3>
+         </li>
+       </ol>
      </section>
    </div>
  </template>
@@ -143,9 +133,6 @@
     }
     ol {
       list-style: none;
-    }
-    section + section {
-      margin-top: 2em;
     }
     p {
       white-space: pre-line;
@@ -234,36 +221,94 @@
       }
     }
     section {
-      > h2:first-child {
-        background: #ddd;
+      > h2 {
         display: inline-block;
         padding: .2em;
-        margin-bottom: .5em;
+        margin: 1em 0 .5em 0;
+        font-size: 1.2em;
+        > b.icon-img {
+          display: inline-block;
+          width: 24px;
+          height: 24px;
+          border-radius: 3px;
+          background: #3e6391;
+          vertical-align: middle;
+          margin-left:.5em;
+        }
       }
+      > ol {
+        padding: .8em;
+        border-bottom: 1px solid #e0e0e0;
+        > li {
+          margin-bottom:.8em;
+        }
+      }
+
     }
     section[data-name="workHistory"],
-    section[data-name="projects"],
     section[data-name="awards"]{
-      padding: 0 .5em;
-      li + li { margin-top: 1em; }
       li {
-        h3 {
-          border-bottom: 1px solid #e0e0e0;
-          padding-bottom: .3em;
-          margin-bottom: .3em;
+        margin-bottom: 1.5em;
+        > h4 {
+          display: inline-block;
+          padding: .5em 0;
+          margin-right: 2em;
+          color: #446a9a;
+          &h4:last-child(){
+            margin-right: 0;
+          }
+        }
+        > p {
+          font-size: 14px;
         }
       }
     }
+    section[data-name="projects"]{
+      li {
+        padding-bottom: 1em;
+        margin-bottom: 1.5em;
+        border-bottom: 1px dotted #e0e0e0;
+        > h4 {
+          padding: .3em 0;
+          margin-right: 2em;
+          color: #446a9a;
+          &h4:last-child(){
+            margin-right: none;
+          }
+        }
+        > p {
+          padding-top: .2em;
+          font-size: 14px;
+        }
+      }
+      &li:last-child{
+        border-bottom: none;
+      }
+    }
     section[data-name="education"]{
-      padding: 0 .5em;
+      ol>li>h3>p {
+        display: inline-block;
+        margin: .2em .8em;
+        font-size: .8em;
+      }
       li {
         line-height: 1.5;
       }
     }
     section[data-name="contacts"]{
-      padding: 0 .5em;
-      td:first-child{
-        padding-right: 1em;
+
+      overflow: hidden;
+      li {
+        float: left;
+        text-align: center;
+        > h3{
+          font-size: 1.2em;
+          margin: .5em 2em;
+          >a {
+            color: red;
+            text-decoration: none;
+          }
+        }
       }
     }
   }
