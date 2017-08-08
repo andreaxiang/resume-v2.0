@@ -90,6 +90,16 @@
         ]
       }
     }
+   },
+   computed: {
+     count(){
+       return this.$store.state.count
+     }
+   },
+   methods: {
+     add(){
+       this.$store.commit('increment')
+     }
    }
  }
  </script>

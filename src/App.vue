@@ -19,13 +19,11 @@ import Topbar from './components/Topbar'
 import ResumeEditor from './components/ResumeEditor'
 import ResumePreview from './components/ResumePreview'
 
+import store from './store/index.js'
+
 export default {
   name: 'app',
-  data: function(){
-    return {
-      text: 'hello world'
-    }
-  },
+  store,
   components: {Topbar, ResumeEditor, ResumePreview},
   created(){
     //将SVG icons 插入 body 中
