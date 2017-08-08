@@ -237,12 +237,14 @@
         font-size: 1.2em;
         > b.icon-img {
           display: inline-block;
-          width: 24px;
-          height: 24px;
-          border-radius: 3px;
-          background: #3e6391;
+          width: 18px;
+          height: 18px;
+          border: 1px dotted #3e6391;
+          border-radius: 50%;
+          background: transparent;
           vertical-align: middle;
           margin-left:.5em;
+          margin-top: -3px;
         }
       }
       > ol {
@@ -290,7 +292,7 @@
           font-size: 14px;
         }
       }
-      &li:last-child{
+      li:last-child{
         border-bottom: none;
       }
     }
