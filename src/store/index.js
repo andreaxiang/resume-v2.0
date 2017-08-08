@@ -19,7 +19,7 @@ export default new Vuex.Store({
       profile: {
             name: '',
             intention: '',
-            birth: '',
+            birthday: '',
             city: '',
             telephone: '',
             email: '',
@@ -52,9 +52,9 @@ export default new Vuex.Store({
             {award: 'Test 2', content: 'This is a test file'}
       ],
       contacts: [
-            {GitHub: 'andreaxiang' , Link: 'https://andreaxiang.github.io'},
-            {'微博': 'xxxxxx' , Link: 'https://andreaxiang.github.io'},
-            {'简书': 'xxxxxx' , Link: 'https://andreaxiang.github.io'}
+            {contact: 'GitHub' , Link: 'https://andreaxiang.github.io'},
+            {contact: '微博' , Link: 'https://andreaxiang.github.io'},
+            {contact: '简书' , Link: 'https://andreaxiang.github.io'}
       ]
     }
   },
