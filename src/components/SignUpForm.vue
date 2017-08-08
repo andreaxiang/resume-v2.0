@@ -15,6 +15,7 @@
        </div>
        <div class="actions">
          <input type="submit" value="提交注册">
+         <span class="errorMessage">{{errorMessage}}</span>
        </div>
      </form>
    </div>
@@ -22,7 +23,8 @@
  
  <script>
 
- import AV from '../lib/leancloud';
+ import AV from '../lib/leancloud'
+ import getErrorMessage from '../lib/getErrorMessage'
 
  export default {
    name: 'SignUpForm',
@@ -56,7 +58,7 @@
            id: loginedUser.id
          })
        },(error) => {
-         alert(JSON.stringify(error));
+         this.errorMessage = getErrorMessage(error)
        });
      }
    }
