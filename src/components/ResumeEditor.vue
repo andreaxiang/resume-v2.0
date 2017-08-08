@@ -22,7 +22,7 @@
           </div>
           <div class="resumeField" v-else v-for="(value,key) in resume[item.field]">
             <label> {{key}} </label>
-            <input type="text" :value="value" @input="changeResumeField(`${item.field},.${key}`, $event.target.value)">
+            <input type="text" :value="value" @input="changeResumeField(`${item.field}.${key}`, $event.target.value)">
           </div>
         </li>
       </ol>
