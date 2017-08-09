@@ -7,33 +7,38 @@
        </div>
        <div class="actions">
          <div v-if="logined" class="userActions">
-           <span>欢迎小主，{{user.username}}</span>
+           <span class="welcome">欢迎小主，{{user.username}}</span>
            <a href="#" class="button" @click.prevent="signOut">退出</a>
            <a href="#" class="button">预览</a>
            <a href="#" class="button primary">保存</a>
          </div>
          <div v-else class="userActions">
            <a href="#" class="button primary" @click.prevent="signUpDialogVisible = true">注册</a>
-           <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
-             <SignUpForm @success="signIn($event)"/>
-           </MyDialog>
-           <a href="#" class="button">登录</a>
+           <a href="#" class="button" @click.prevent="signInDialogVisible = true">登录</a>
          </div>
        </div>
      </div>
+     <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
+       <SignUpForm @success="signIn($event)"/>
+     </MyDialog>
+     <MyDialog title="登录" :visible="signInDialogVisible" @close="signInDialogVisible = false">
+       <SignInForm />
+     </MyDialog>
    </div>
  </template>
  
  <script>
  import MyDialog from './MyDialog'
  import SignUpForm from './SignUpForm'
+ import SignInForm from './SignInForm'
  import AV from '../lib/leancloud'
 
  export default {
    name: 'Topbar',
    data(){
      return {
-       signUpDialogVisible: false
+       signUpDialogVisible: false,
+       signInDialogVisible: false
      }
    },
    computed: {
@@ -45,7 +50,7 @@
      }
    },
    components: {
-     MyDialog, SignUpForm
+     MyDialog, SignUpForm, SignInForm
    },
    methods: {
      signOut(){
@@ -113,6 +118,9 @@
    display: flex;
    .userActions {
      margin-right: 3em;
+     .welcome {
+       margin-right: .5em;
+     }
    }
  }
  </style>
