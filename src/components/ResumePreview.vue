@@ -2,6 +2,8 @@
    <div id="resumePreview">
      <div class="top">
       <h3>RESUME</h3>
+      <a href="#" class="button">预览</a>
+      <a href="#" class="button">保存</a>
      </div>
      <div class="resume">
        <section data-name="education" v-show="resume.education">
@@ -147,9 +149,21 @@
       line-height: 46px;
       box-shadow:0 1px 3px 0 rgba(0,0,0,0.25);
       z-index: 10;
+      overflow: hidden;
       > h3 {
         color: #fff;
+        float: left;
         margin-left: .5em;
+      }
+      >.button {
+        float: right;
+        font-size: 16px;
+        color: #e0e0e0;
+        text-decoration: none;
+        margin-right: 1em;
+        &:hover{
+          color: #fff;
+        }
       }
     }
     .resume {

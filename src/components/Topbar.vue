@@ -9,8 +9,6 @@
          <div v-if="logined" class="userActions">
            <span class="welcome">欢迎小主，{{user.username}}</span>
            <a href="#" class="button" @click.prevent="signOut">退出</a>
-           <a href="#" class="button">预览</a>
-           <a href="#" class="button primary">保存</a>
          </div>
          <div v-else class="userActions">
            <a href="#" class="button primary" @click.prevent="signUpDialogVisible = true">注册</a>
