@@ -12,16 +12,16 @@
       <ol class="panels">
         <li v-for="item in resumeConfig" v-show="item.field === selected">
           <div v-if="item.type === 'array'">
-            <h2 class="item-title">{{item.title}}</h2>
+            <h2 class="item-title"> {{item.title}} </h2>
             <div class="subitem" v-for="(subitem, i) in resume[item.field]">
-              <el-button class="remove" type="danger" @click="removeResumeSubField(item.field, i)" size="mini">删除</el-button>
+              <button class="remove-btn" @click="removeResumeSubField(item.field, i)">删除</button>
               <div class="resumeField" v-for="(value,key) in subitem">
                 <label> {{key}} </label>
                 <input type="text" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`, $event.target.value)">
               </div>
               <hr>
             </div>
-            <el-button type="success"  @click="addResumeSubField(item.field)">添加</el-button>
+            <button class="add-btn" @click="addResumeSubField(item.field)">添加</button>
           </div>
           <div v-else class="resumeField" v-for="(value,key) in resume[item.field]">
             <label> {{key}} </label>
@@ -132,5 +132,39 @@
     border: none;
     border-top: 1px solid #ddd;
     margin:24px 0;
+  }
+  .item-title {
+    font-size: 1.2em;
+    margin-bottom: .8em;
+  }
+  .remove-btn {
+    float: right;
+    border: 1px solid #ddd;
+    outer-line: none;
+    color: #0d331f;
+    background: #fff;
+    border-radius: 3px;
+    padding: .3em .5em;
+    cursor: pointer;
+    font-size: 12px;
+    &:hover {
+      border: 1px solid #ff5b3b;
+      color: #ff5b3b;
+    }
+  }
+  .add-btn {
+    width: 320px;
+    border: 1px solid #0d331f;
+    outer-line: none;
+    color: #0d331f;
+    background: #fff;
+    border-radius: 3px;
+    padding: .6em .5em;
+    cursor: pointer;
+    font-size: 14px;
+    &:hover {
+      border: 1px solid #ff5b3b;
+      color: #ff5b3b;
+    }
   }
  </style>

@@ -28,13 +28,7 @@ import getAVUser from './lib/getAVUser'
 export default {
   name: 'app',
   store,
-  data(){
-
-  },
   components: {Topbar, ResumeEditor, ResumePreview},
-  methods: {
-
-  },
   created(){
     //将SVG icons 插入 body 中
     document.body.insertAdjacentHTML('afterbegin', icons)
