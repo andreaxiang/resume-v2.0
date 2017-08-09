@@ -26,7 +26,7 @@
  </script>
  
 <style lang="scss" scoped>
-   .dialogWrapper{
+   .wrapper{
      position: fixed;
      background: hsla(0, 0%, 0%, .35);
      top: 0;
@@ -37,6 +37,7 @@
      display: flex;
      justify-content: center;
      align-items: center;
+     z-index: 100000;
    }
    .dialog {
      background: #fff;
