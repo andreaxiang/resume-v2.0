@@ -176,24 +176,24 @@
       background: #f0efe9;
       text-align: center;
       overflow: hidden;
-      >.avatar {
-        width: 150px;
-        height: 150px;
-        margin: .5em auto;
-        border-radius: 50%;
-        background: #fff;
-        padding: 3px;
-        text-align: center;
-        > img {
-          width: 144px;
-          height: 144px;
-          border-radius: 50%;
-          vertical-align: middle;
-        }
-      }
     }
     section[data-name="profile"],section[data-name="skills"]{
         margin: 1.5em 0;
+        >.avatar {
+          width: 150px;
+          height: 150px;
+          margin: .5em auto;
+          border-radius: 50%;
+          background: #fff;
+          padding: 3px;
+          text-align: center;
+          > img {
+            width: 144px;
+            height: 144px;
+            border-radius: 50%;
+            vertical-align: middle;
+          }
+        }
         ol {
           border-bottom: none;
         }
