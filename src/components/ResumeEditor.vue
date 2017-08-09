@@ -10,17 +10,20 @@
       </ol>
      </nav>
       <ol class="panels">
-        <li v-for="item in resume.config" v-show="item.field === selected">
-          <div v-if="resume[item.field] instanceof Array">
+        <li v-for="item in resumeConfig" v-show="item.field === selected">
+          <div v-if="item.type === 'array'">
+            <h2 class="item-title">{{item.title}}</h2>
             <div class="subitem" v-for="(subitem, i) in resume[item.field]">
+              <el-button class="remove" type="danger" @click="removeResumeSubField(item.field, i)" size="mini">删除</el-button>
               <div class="resumeField" v-for="(value,key) in subitem">
                 <label> {{key}} </label>
                 <input type="text" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`, $event.target.value)">
               </div>
               <hr>
             </div>
+            <el-button type="success"  @click="addResumeSubField(item.field)">添加</el-button>
           </div>
-          <div class="resumeField" v-else v-for="(value,key) in resume[item.field]">
+          <div v-else class="resumeField" v-for="(value,key) in resume[item.field]">
             <label> {{key}} </label>
             <input type="text" :value="value" @input="changeResumeField(`${item.field}.${key}`, $event.target.value)">
           </div>
@@ -44,6 +47,9 @@
      },
      resume(){
        return this.$store.state.resume
+     },
+     resumeConfig() {
+       return this.$store.state.resumeConfig
      }
    },
    methods: {
@@ -52,6 +58,13 @@
          path,
          value
        })
+     },
+     addResumeSubField(field) {
+       console.log(1);
+       this.$store.commit('addResumeSubField', { field })
+     },
+     removeResumeSubField(field, index) {
+       this.$store.commit('removeResumeSubField', { field, index })
      }
    }
  }
