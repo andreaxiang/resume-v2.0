@@ -3,35 +3,6 @@
      <div class="top">
       <h3>RESUME</h3>
      </div>
-     <div class="aside">
-       <section class="avatar">
-        <img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1502182936098&amp;di=b668cb1f083fc55265080b795e3db6c3&amp;imgtype=0&amp;src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201603%2F30%2F20160330184340_BKeM4.jpeg">
-       </section>
-       <section data-name="profile" v-show="resume.profile">
-         <h1>
-           {{resume.profile.name}}
-         </h1>
-         <h4>求职意向：{{resume.profile.intention}}</h4>
-         <div class="aside-title">基本信息</div>
-         <ol class="person-info">
-           <li>生日：{{resume.profile.birthday}}</li>
-           <li>现居：{{resume.profile.city}}</li>
-           <li>电话：{{resume.profile.telephone}}</li>
-           <li>邮箱：{{resume.profile.email}}</li>
-         </ol>
-       </section>
-       <section data-name="skills" v-show="resume.skills">
-         <div class="aside-title">职业技能</div>
-         <ol>
-           <li v-for="item in resume.skills">
-             <p class="skill-detail">
-               <span>{{item.skill}}</span>
-               <span v-show="item.level"> {{item.level}} </span>
-             </p>
-           </li>
-         </ol>
-       </section>
-     </div>
      <div class="resume">
        <section data-name="education" v-show="resume.education">
          <h2>
@@ -48,7 +19,6 @@
            </li>
          </ol>
        </section>
-
        <section data-name="workHistory" v-show="resume.workHistory">
          <h2>
            <b class="icon-img"></b>
@@ -100,6 +70,35 @@
          </ol>
        </section>
      </div>
+          <div class="aside">
+            <section class="avatar">
+             <img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1502182936098&amp;di=b668cb1f083fc55265080b795e3db6c3&amp;imgtype=0&amp;src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201603%2F30%2F20160330184340_BKeM4.jpeg">
+            </section>
+            <section data-name="profile" v-show="resume.profile">
+              <h1>
+                {{resume.profile.name}}
+              </h1>
+              <h4>求职意向：{{resume.profile.intention}}</h4>
+              <div class="aside-title">基本信息</div>
+              <ol class="person-info">
+                <li>生日：{{resume.profile.birthday}}</li>
+                <li>现居：{{resume.profile.city}}</li>
+                <li>电话：{{resume.profile.telephone}}</li>
+                <li>邮箱：{{resume.profile.email}}</li>
+              </ol>
+            </section>
+            <section data-name="skills" v-show="resume.skills">
+              <div class="aside-title">职业技能</div>
+              <ol>
+                <li v-for="item in resume.skills">
+                  <p class="skill-detail">
+                    <span>{{item.skill}}</span>
+                    <span v-show="item.level"> {{item.level}} </span>
+                  </p>
+                </li>
+              </ol>
+            </section>
+          </div>
    </div>
  </template>
  
@@ -156,13 +155,11 @@
     .resume {
       width: 70%;
       min-height: 100vh;
-      float: left;
     }
     .aside {
       width: 30%;
       //background: #e6e6e6;
       background: #f0efe9;
-      float: right;
       text-align: center;
       overflow: hidden;
       >.avatar {
