@@ -6,13 +6,13 @@
       <a href="#" class="button">保存</a>
      </div>
      <div class="resume">
-       <section data-name="education" v-show="resume.education">
+       <section data-name="education" v-if="resume.education && resume.education.length>0">
          <h2>
            <b class="icon-img"></b>
            教育背景  Education Background
          </h2>
          <ol>
-           <li v-for="item in resume.education">
+           <li v-for="(item,index) in resume.education">
              <h3>
                <p v-show="item.time"> {{item.time}} </p>
                <p v-show="item.school"> {{item.school}} </p>
@@ -21,21 +21,21 @@
            </li>
          </ol>
        </section>
-       <section data-name="workHistory" v-show="resume.workHistory">
+       <section data-name="workHistory" v-if="resume.workHistory && resume.workHistory.length>0">
          <h2>
            <b class="icon-img"></b>
            工作经历  Work Experience
          </h2>
          <ol>
-           <li v-for="item in resume.workHistory">
-             <h4 v-show="item.time"> {{item.time}} </h4>
-             <h4>{{item.company}}</h4>
-             <h4 v-show="item.title"> {{item.title}} </h4>
+           <li v-for="(item,index) in resume.workHistory">
+             <h4> {{item.time}} </h4>
+             <h4> {{item.company}} </h4>
+             <h4> {{item.title}} </h4>
              <p v-show="item.content">工作描述： {{item.content}} </p>
            </li>
          </ol>
        </section>
-       <section data-name="projects" v-show="resume.projects">
+       <section data-name="projects" v-show="resume.projects && resume.projects.length>0">
          <h2>
            <b class="icon-img"></b>
            项目展示  Projects Show
@@ -48,59 +48,59 @@
            </li>
          </ol>
        </section>
-       <section data-name="awards" v-show="resume.awards">
+       <section data-name="awards" v-if="resume.awards && resume.awards.length>0">
          <h2>
            <b class="icon-img"></b>
            获奖情况 Additional Performance
          </h2>
          <ol>
-           <li v-for="item in resume.awards">
+           <li v-for="(item,index) in resume.awards">
              <h3>{{item.award}}</h3>
              <p v-show="item.content"> {{item.content}} </p>
            </li>
          </ol>
        </section>
-       <section data-name="contacts" v-show="resume.contacts">
+       <section data-name="contacts" v-if="resume.contacts && resume.contacts.length>0">
          <h2>
            <b class="icon-img"></b>
            联系方式  Contact Me
          </h2>
          <ol>
-           <li v-for="item in resume.contacts">
+           <li v-for="(item,index) in resume.contacts">
              <h3><a href="v-show='item.link'">{{item.contact}}</a></h3>
            </li>
          </ol>
        </section>
      </div>
-          <div class="aside">
-            <section class="avatar">
-             <img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1502182936098&amp;di=b668cb1f083fc55265080b795e3db6c3&amp;imgtype=0&amp;src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201603%2F30%2F20160330184340_BKeM4.jpeg">
-            </section>
-            <section data-name="profile" v-show="resume.profile">
-              <h1>
-                {{resume.profile.name}}
-              </h1>
-              <h4>求职意向：{{resume.profile.intention}}</h4>
-              <div class="aside-title">基本信息</div>
-              <ol class="person-info">
-                <li>生日：{{resume.profile.birthday}}</li>
-                <li>现居：{{resume.profile.city}}</li>
-                <li>电话：{{resume.profile.telephone}}</li>
-                <li>邮箱：{{resume.profile.email}}</li>
-              </ol>
-            </section>
-            <section data-name="skills" v-show="resume.skills">
-              <div class="aside-title">职业技能</div>
-              <ol>
-                <li v-for="item in resume.skills">
-                  <p class="skill-detail">
-                    <span>{{item.skill}}</span>
-                    <span v-show="item.level"> {{item.level}} </span>
-                  </p>
-                </li>
-              </ol>
-            </section>
-          </div>
+     <div class="aside" v-show="resume.profile && resume.skills">
+       <section data-name="profile" v-show="resume.profile && resume.profile.name">
+         <div class="avatar">
+           <img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1502182936098&amp;di=b668cb1f083fc55265080b795e3db6c3&amp;imgtype=0&amp;src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201603%2F30%2F20160330184340_BKeM4.jpeg">
+         </div>
+         <h1>
+           {{resume.profile.name}}
+         </h1>
+         <h4>求职意向：{{resume.profile.intention}}</h4>
+         <div class="aside-title">基本信息</div>
+         <ol class="person-info">
+           <li>生日：{{resume.profile.birthday}}</li>
+           <li>现居：{{resume.profile.city}}</li>
+           <li>电话：{{resume.profile.telephone}}</li>
+           <li>邮箱：{{resume.profile.email}}</li>
+         </ol>
+       </section>
+       <section data-name="skills" v-if="resume.skills && resume.skills.length>0">
+         <div class="aside-title">职业技能</div>
+         <ol>
+           <li v-for="item in resume.skills">
+             <p class="skill-detail">
+               <span>{{item.skill}}</span>
+               <span v-show="item.level"> {{item.level}} </span>
+             </p>
+           </li>
+         </ol>
+       </section>
+     </div>
    </div>
  </template>
  
