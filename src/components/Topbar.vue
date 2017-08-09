@@ -40,20 +40,19 @@
      user(){
        return this.$store.state.user
      },
-     login(){
-       AV.User.logOut()
-       this.$store.commit('removeUser')
-     },
-     signIn(user){
-       this.signUpDialogVisible = false
-       this.$store.commit('setUser', user)
+     logined(){
+       return this.user.id
      }
    },
    components: {
      MyDialog, SignUpForm
    },
    methods: {
-     login(user){
+     signOut(){
+       AV.User.logOut()
+       this.$store.commit('removeUser')
+     },
+     signIn(user){
        this.signUpDialogVisible = false
        this.$store.commit('setUser', user)
      }
