@@ -11,8 +11,8 @@
      </nav>
       <ol class="panels">
         <li v-for="item in resumeConfig" v-show="item.field === selected">
+          <h2 class="item-title">{{item.title}}</h2>
           <div v-if="item.type === 'array'">
-            <h2 class="item-title"> {{item.title}} </h2>
             <div class="subitem" v-for="(subitem, i) in resume[item.field]">
               <button class="remove-btn" @click="removeResumeSubField(item.field, i)">删除</button>
               <div class="resumeField" v-for="(value,key) in subitem">
@@ -60,7 +60,6 @@
        })
      },
      addResumeSubField(field) {
-       console.log(1);
        this.$store.commit('addResumeSubField', { field })
      },
      removeResumeSubField(field, index) {

@@ -39,9 +39,6 @@
        errorMessage: ''
      }
    },
-   created(){
-
-   },
    methods: {
      signUp(){
        let {username, email, password} = this.formData //es6 对象解构

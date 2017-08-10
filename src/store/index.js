@@ -64,7 +64,6 @@ export default new Vuex.Store({
       }
     ],
     resume: {
-      id: ''
     }
   },
   mutations: {

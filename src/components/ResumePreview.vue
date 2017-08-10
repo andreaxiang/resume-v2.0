@@ -2,7 +2,7 @@
    <div id="resumePreview">
      <div class="top">
       <h3>RESUME</h3>
-      <a href="#" class="button">预览</a>
+      <a href="#" class="button" @click.prevent="preview">预览</a>
       <a href="#" class="button" @click="save">保存</a>
      </div>
      <div class="resume">
@@ -103,7 +103,7 @@
      </div>
    </div>
  </template>
- 
+
  <script>
 
  export default {
@@ -113,15 +113,21 @@
        return this.$store.state.resume
      }
    },
+   created(){
+     console.log(this.resume)
+   },
    methods: {
      save(){
        this.$store.dispatch('saveResume')
+     },
+     preview(){
+       this.$emit('preview')
      }
    }
  }
  </script>
- 
- <style lang="scss">
+
+ <style lang="scss" scoped>
   #resumePreview {
     background: #fff;
     box-shadow: 0 1px 3px 0 rgba(0,0,0,0.25);

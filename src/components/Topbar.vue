@@ -65,7 +65,7 @@
  </script>
  
  <style lang="scss" scoped>
-#topbar {
+ #topbar {
    background:#fff;
    box-shadow:0 1px 3px 0 rgba(0,0,0,0.25);
    >.wrapper {
