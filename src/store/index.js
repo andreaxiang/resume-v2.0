@@ -97,34 +97,41 @@ export default new Vuex.Store({
     },
     removeUser(state){
       state.user.id = ''
+      state.user.username = ''
+      state.resume.id = ''
     },
-    addResumeSubField(state, { field }) {
+    addResumeSubField(state, {field}) {
       let empty = {}
       state.resume[field].push(empty)
       state.resumeConfig.filter((i) => i.field === field)[0].keys.map((key) => {
         Vue.set(empty, key, '')
       })
     },
-    removeResumeSubField(state, { field, index }) {
+    removeResumeSubField(state, {field, index}) {
       state.resume[field].splice(index, 1)
     },
-    setResumeId(state,{ id }){
-      state.resume.id = id
-    },
-    setResume(state, resume){
-      state.resumeConfig.map(({field})=>{
+    //设置resume数据
+    setResume(state, payload){
+      state.resumeConfig.map(({field}) => {
         Vue.set(state.resume, field, resume[field])
       })
       state.resume.id = resume.id
+    },
+    setResumeId(state,{id}){
+      state.resume.id = id
     }
   },
   actions: {
-    saveResume({state,commit}, payload){
+    saveResume({state, commit}, payload){
+      //新建一个Resume的类
       var Resume = AV.Object.extend('Resume')
       var resume = new Resume()
       if(state.resume.id){
         resume.id = state.resume.id
       }
+
+      var currentUserId = getAVUser().id
+
       resume.set('profile', state.resume.profile)
       resume.set('education', state.resume.education)
       resume.set('skills', state.resume.skills)
@@ -132,7 +139,9 @@ export default new Vuex.Store({
       resume.set('projects', state.resume.projects)
       resume.set('awards', state.resume.awards)
       resume.set('contacts', state.resume.contacts)
-      resume.set('owner_id', getAVUser().id)
+      //设置当前用户owner_id
+      resume.set('owner_id', currentUserId)
+
       //设置访问权限
       var acl = new AV.ACL()
       acl.setPublicReadAccess(AV.User.current(), true) //只有这个 user 能读
@@ -140,13 +149,17 @@ export default new Vuex.Store({
 
       resume.setACL(acl)
       resume.save().then(function(response){
-        commit('setResumeId', {id: response.id})
-      }).catch(function(error){
+        if(!state.resume.id){
+          commit('setResumeId', {
+            id: response.id
+          })
+        }
+      }).catch((error) => {
         console.log(error)
       })
     },
     fetchResume({commit}, payload){
-      var query = new AV.Query('Resume');
+      var query = new AV.Query('Resume')
       query.equalTo('owner_id', getAVUser().id)
       query.first().then((resume)=>{
         if(resume){

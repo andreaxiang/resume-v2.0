@@ -2,7 +2,7 @@
    <div id="resumeEditor">
      <nav>
       <ol>
-        <li v-for="(item,index) in resume.config" :class="{active: item.field === selected}" @click="selected = item.field">
+        <li v-for="(item,index) in resumeConfig" :class="{active: item.field === selected}" @click="selected = item.field">
           <svg class="icon">
             <use :xlink:href="`#icon-${item.icon}`"></use>
           </svg>
@@ -33,9 +33,12 @@
  </template>
  
  <script>
- 
+
+ import store from '../store/index.js'
+
  export default {
    name: 'ResumeEditor',
+   store,
    computed: {
      selected: {
        get(){
