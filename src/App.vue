@@ -8,7 +8,7 @@
         <ResumeEditor />
         <ResumePreview @preview="preview" />
       </main>
-      <el-button id="exitPreview" v-on:click="exitPreview">退出全屏</el-button>
+      <el-button id="exitPreview" v-on:click="exitPreview">退出预览</el-button>
     </div>
   </div>
 </template>
@@ -18,9 +18,10 @@ import Topbar from './components/Topbar'
 import ResumeEditor from './components/ResumeEditor'
 import ResumePreview from './components/ResumePreview'
 import icons from './assets/icons'
-import store from './store/index'
+import store from './store/index.js'
 import AV from './lib/leancloud'
 import getAVUser from './lib/getAVUser'
+
 export default {
   name: 'app',
   store,
@@ -47,11 +48,11 @@ export default {
   created() {
     document.body.insertAdjacentHTML('afterbegin', icons) //插入icon的svg
     let state = localStorage.getItem('state')
-    if (state) {
-      state = JSON.parse(state)
-    }
-    this.$store.commit('initState', state)
-    this.$store.commit('setUser', getAVUser())
+      if (state) {
+        state = JSON.parse(state)
+      }
+      this.$store.commit('initState', state)
+      this.$store.commit('setUser', getAVUser())
   }
 }
 </script>
@@ -67,11 +68,11 @@ svg.icon {
 #app {
   width: 100%;
   height: 100%;
-  background: #f0efe9;
   .page {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    background: #f0efe9;
     >main {
       width: 100%;
       min-width: 1024px;
@@ -93,10 +94,10 @@ svg.icon {
     }
   }
   .fullPage{
-    margin: 10px;
+    margin: 20px 0;
   }
-  &.previewMode{
-    overflow: auto; //使得全屏显示时的底部白边
+  &.previewMode {
+    //overflow: auto; //使得全屏显示时的底部白边
   }
   &.previewMode #topbar {
     display: none;
@@ -105,9 +106,14 @@ svg.icon {
     display: none;
   }
   &.previewMode #resumePreview {
-    min-width: 976px;
+    max-width: 976px;
+    width: 70%;
     margin: 0 auto;
+    .view {
+      display: none;
+    }
   }
+
   #exitPreview {
     display: none;
   }

@@ -83,7 +83,6 @@ export default new Vuex.Store({
         }
       })
       Object.assign(state, payload)
-      console.log('resume', state.resumeConfig)
     },
     switchTab(state, payload){
       state.selected = payload

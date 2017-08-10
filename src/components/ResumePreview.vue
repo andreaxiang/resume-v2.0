@@ -2,7 +2,7 @@
    <div id="resumePreview">
      <div class="top">
       <h3>RESUME</h3>
-      <a href="#" class="button" @click.prevent="preview">预览</a>
+      <a href="#" class="button view" @click.prevent="preview">预览</a>
       <a href="#" class="button" @click="save">保存</a>
      </div>
      <div class="resume">
