@@ -14,7 +14,7 @@
          <input type="password" v-model="formData.password" required placeholder="密码不少于6位">
        </div>
        <div class="actions">
-         <input type="submit" value="提交注册">
+         <input type="submit" value="注册">
          <span class="errorMessage">{{errorMessage}}</span>
        </div>
      </form>
@@ -44,7 +44,7 @@
    },
    methods: {
      signUp(){
-       let {username, email, password} = this.formData
+       let {username, email, password} = this.formData //es6 对象解构
        // 新建 AVUser 对象实例
        var user = new AV.User();
        // 设置用户名

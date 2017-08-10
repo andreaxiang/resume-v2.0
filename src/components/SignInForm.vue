@@ -36,7 +36,7 @@
    },
    methods: {
      signIn(){
-       let {username, password} = this.formData
+       let {username, password} = this.formData //es6对象解构
        AV.User.logIn(username, password).then(() => {
          this.$emit('success', getAVUser())
        },(error) => {

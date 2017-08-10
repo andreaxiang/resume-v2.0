@@ -3,7 +3,7 @@
      <div class="top">
       <h3>RESUME</h3>
       <a href="#" class="button">预览</a>
-      <a href="#" class="button">保存</a>
+      <a href="#" class="button" @click="save">保存</a>
      </div>
      <div class="resume">
        <section data-name="education" v-if="resume.education && resume.education.length>0">
@@ -113,8 +113,10 @@
        return this.$store.state.resume
      }
    },
-   created(){
-     console.log(this.resume)
+   methods: {
+     save(){
+       this.$store.dispatch('saveResume')
+     }
    }
  }
  </script>

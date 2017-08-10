@@ -1,6 +1,8 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
 import objectPath from 'object-path'
+import AV from '../lib/leancloud.js'
+import getAVUser from '../lib/getAVUser.js'
 
 Vue.use(Vuex)
 
@@ -61,7 +63,9 @@ export default new Vuex.Store({
         title: '联系方式'
       }
     ],
-    resume: {}
+    resume: {
+      id: ''
+    }
   },
   mutations: {
     initState(state, payload) {
@@ -105,6 +109,62 @@ export default new Vuex.Store({
     },
     removeResumeSubField(state, { field, index }) {
       state.resume[field].splice(index, 1)
+    },
+    setResumeId(state,{ id }){
+      state.resume.id = id
+    },
+    setResume(state, resume){
+      state.resumeConfig.map(({field})=>{
+        Vue.set(state.resume, field, resume[field])
+      })
+      state.resume.id = resume.id
+    }
+  },
+  actions: {
+    saveResume({state,commit}, payload){
+      var Resume = AV.Object.extend('Resume')
+      var resume = new Resume()
+      if(state.resume.id){
+        resume.id = state.resume.id
+      }
+      resume.set('profile', state.resume.profile)
+      resume.set('education', state.resume.education)
+      resume.set('skills', state.resume.skills)
+      resume.set('workHistory', state.resume.workHistory)
+      resume.set('projects', state.resume.projects)
+      resume.set('awards', state.resume.awards)
+      resume.set('contacts', state.resume.contacts)
+      resume.set('owner_id', getAVUser().id)
+      //设置访问权限
+      var acl = new AV.ACL()
+      acl.setPublicReadAccess(AV.User.current(), true) //只有这个 user 能读
+      acl.setPublicWriteAccess(AV.User.current(), true) //只有这个 user 能写
+
+      resume.setACL(acl)
+      resume.save().then(function(response){
+        commit('setResumeId', {id: response.id})
+      }).catch(function(error){
+        console.log(error)
+      })
+    },
+    fetchResume({commit}, payload){
+      var query = new AV.Query('Resume');
+      query.equalTo('owner_id', getAVUser().id)
+      query.first().then((resume)=>{
+        if(resume){
+          commit('setResume', {
+            id: resume.id,
+            profile: resume.profile,
+            education: resume.education,
+            skills: resume.skills,
+            workHistory: resume.workHistory,
+            projects: resume.projects,
+            awards: resume.awards,
+            contacts: resume.contacts,
+            owner_id: resume.owner_id
+          })
+        }
+      })
     }
   }
 })
